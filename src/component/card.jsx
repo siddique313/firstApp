@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import CardItems from '../CardItems';
+import CardItems from './CardItems';
 import axios from 'axios';
 
 
@@ -27,9 +27,22 @@ if(testApi <= 0){
 }
   return  <>
   <div className='w-full flex items-center justify-center  py-8'>
-    <input className='outline-none border-2 border-gray-200 pl-2 pr-9' type="text" placeholder='How you need' />
+    <input className='outline-none border-2 border-gray-200 pl-2 pr-9 rounded-lg' type="text" placeholder='How you need' />
   </div>
-   <CardItems testApi={testApi}/>
+  <div className='w-full  flex gap-4 items-center justify-center'>
+    <button className='bg-slate-200 px-5 py-2 rounded-xl '>All Catagory</button>
+    <button className='bg-slate-200 px-5 py-2 rounded-xl '>men's clothing</button>
+    <button className='bg-slate-200 px-5 py-2 rounded-xl '>women's clothing</button>
+    <button className='bg-slate-200 px-5 py-2 rounded-xl '>electronics</button>
+  </div>
+  <div className='grid grid-cols-4 gap-3 px-8'>
+      {
+        testApi.map((item,index)=>{
+            return <CardItems key={index} item={item}/> 
+           
+        })
+      }
+    </div>
   </>
   
 

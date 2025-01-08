@@ -1,11 +1,7 @@
 import React from 'react'
 
-export default function CardItems({testApi}) {
-  return (
-    <div className='grid grid-cols-4 gap-3 px-8'>
-      {
-        testApi.map((item,index)=>{
-            return <div key={index} className='flex flex-col shadow-2xl'>
+export default function CardItems({item}) {
+  return (<div  className='flex flex-col shadow-2xl'>
                 <div className=' flex flex-col items-center justify-center text-center'>
                     <h1 className='text-center px-3 font-bold font-serif py-5'>{item.title.slice(0,15)} </h1>
                     <img className='object-contain h-52 px-5 max-w-xs transition duration-300 ease-in-out hover:scale-110' src={item.image} />
@@ -19,8 +15,6 @@ export default function CardItems({testApi}) {
                 </div>
             </div>  
            
-        })
-      }
-    </div>
+      
   )
 }
