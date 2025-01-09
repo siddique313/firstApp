@@ -3,7 +3,10 @@ import CardItems from "./CardItems";
 import axios from "axios";
 
 export default function Card() {
+
+
   const [search, setSearch] = useState("");
+
   const [testApi, setTestApi] = useState([]);
   const api = "https://fakestoreapi.com/products";
   const fetchApi = async () => {
@@ -14,7 +17,6 @@ export default function Card() {
   useEffect(() => {
     fetchApi();
   }, []);
-  ("");
   const aaa = testApi.filter((ca) => ca.includes(search) === ca.catagory);
   if (testApi <= 0) {
     return (

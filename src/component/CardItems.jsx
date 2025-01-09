@@ -8,7 +8,7 @@ export default function CardItems({ item }) {
           {item.title.slice(0, 15)}{" "}
         </h1>
         <img
-          className="object-contain h-52 px-5 transition duration-300 ease-in-out hover:scale-110"
+          className="object-contain h-52 px-5 max-w-xs transition duration-300 ease-in-out hover:scale-110"
           src={item.image}
         />
       </div>
