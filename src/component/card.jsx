@@ -4,6 +4,7 @@ import axios from 'axios';
 
 
 export default function Card() {
+  const [search,setSearch]=useState('')
     const [testApi, setTestApi] = useState([])
     const api = "https://fakestoreapi.com/products"
     const fetchApi = async () => {
@@ -14,6 +15,8 @@ export default function Card() {
   useEffect(()=>{
 fetchApi()
   },[])
+  ""
+  const aaa= testApi.filter((ca)=>ca.includes(search) === ca.catagory)
 if(testApi <= 0){
     return <div className='w-screen h-screen flex items-center justify-center bg-slate-600 '>
       <div
@@ -27,17 +30,18 @@ if(testApi <= 0){
 }
   return  <>
   <div className='w-full flex items-center justify-center  py-8'>
-    <input className='outline-none border-2 border-gray-200 pl-2 pr-9 rounded-lg' type="text" placeholder='How you need' />
+    <input className='outline-none border-2 border-gray-200 pl-2 pr-9 rounded-lg' type="text" placeholder='What you need' value={search} onChange={(e)=>setSearch(e.target.value)} />
   </div>
-  <div className='w-full  flex gap-4 items-center justify-center'>
+  <div className='w-full  flex gap-4 items-center justify-center flex-wrap'>
     <button className='bg-slate-200 px-5 py-2 rounded-xl '>All Catagory</button>
-    <button className='bg-slate-200 px-5 py-2 rounded-xl '>men's clothing</button>
-    <button className='bg-slate-200 px-5 py-2 rounded-xl '>women's clothing</button>
-    <button className='bg-slate-200 px-5 py-2 rounded-xl '>electronics</button>
+    <button  className='bg-slate-200 px-5 py-2 rounded-xl '>Men's clothing</button>
+    <button  className='bg-slate-200 px-5 py-2 rounded-xl '>women's clothing</button>
+    <button  className='bg-slate-200 px-5 py-2 rounded-xl '>Electronics</button>
+    <button className='bg-slate-200 px-5 py-2 rounded-xl '>Jewellery</button>
   </div>
-  <div className='grid grid-cols-4 gap-3 px-8'>
+  <div className='grid grid-cols-1 gap-3 px-2 sm:px-8 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 '>
       {
-        testApi.map((item,index)=>{
+        aaa.map((item,index)=>{
             return <CardItems key={index} item={item}/> 
            
         })
