@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import CardItems from "./CardItems";
 import axios from "axios";
 
@@ -10,7 +10,6 @@ export default function Card() {
   });
   const [testApi, setTestApi] = useState([]);
   const api = "https://fakestoreapi.com/products";
-
   const fetchApi = async () => {
     const res = await axios.get(api);
     setTestApi(res.data);
@@ -22,11 +21,11 @@ export default function Card() {
 
   useEffect(() => {
     const filterBySearch = testApi.filter((val) =>
-      val.category.startsWith(search.searchText || search.selectOption)
+      val.category.includes(search.searchText || search.selectOption)
     );
     setSearch((prev) => ({ ...prev, filteredArray: filterBySearch }));
   }, [search.selectOption, search.searchText, testApi]);
-
+  const categories = ["", "men", "women", "electronics", "jewelry"];
   if (testApi.length === 0) {
     return (
       <div className="w-screen h-screen flex items-center justify-center bg-slate-600">
@@ -55,8 +54,8 @@ export default function Card() {
           }
         />
       </div>
-      <div className="w-full flex gap-4 items-center justify-center flex-wrap">
-        {["", "men", "women", "electronics", "jewelery"].map((category) => (
+      <div className="w-full flex gap-4 items-center justify-center flex-wrap pb-8">
+        {categories.map((category) => (
           <button
             key={category}
             onClick={() => handleSelectOption(category)}

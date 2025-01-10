@@ -1,38 +1,20 @@
-import React, { useState } from 'react';
+import { useState } from "react";
+import { useDebounce } from "use-debounce";
 
-function Text() {
-  // State to manage the visibility of the men's clothing category
-  const [showMensClothing, setShowMensClothing] = useState(false);
-
-  // Toggle visibility when the button is clicked
-  const handleButtonClick = () => {
-    setShowMensClothing(!showMensClothing);
-  };
+export default function Text() {
+  const [text, setText] = useState("Hello");
+  const [value] = useDebounce(text, 5000);
 
   return (
-    <div className="App">
-      <h1>Welcome to Our Clothing Store</h1>
-      
-      {/* Button to toggle Men's Clothing category */}
-      <button onClick={handleButtonClick}>
-    Show Mens Clothing
-      </button>
-
-      {/* Display Men's Clothing category if showMensClothing is true */}
-      {showMensClothing && (
-        <div className="mens-clothing-category">
-          <h2>Men's Clothing</h2>
-          <ul>
-            <li>Shirts</li>
-            <li>T-shirts</li>
-            <li>Pants</li>
-            <li>Jackets</li>
-            <li>Shorts</li>
-          </ul>
-        </div>
-      )}
+    <div>
+      <input
+        defaultValue={"Hello"}
+        onChange={(e) => {
+          setText(e.target.value);
+        }}
+      />
+      <p>Actual value: {text}</p>
+      <p>Debounce value: {value}</p>
     </div>
   );
 }
-
-export default Text;
